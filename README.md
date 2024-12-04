@@ -1,9 +1,6 @@
 # google_slides_kiosk
-Fire-and-forget script to loop Google Slides presentation in full screen. Reloads the browser each day to present the latest version.
+Script to show Google Slides presentation in full screen and refresh the browser at set interval.
 
-* In Google Slides: File --> Share --> Publish to Web
-* nano slides_kiosk.sh
-  * change <file_id> and delayms (advance interval)
-  * set time to reload chromium
-* chmod +x slides_kiosk.sh
-* run: ./slides_kiosk.sh
+
+sudo apt install chromium-driver
+pip install selenium
