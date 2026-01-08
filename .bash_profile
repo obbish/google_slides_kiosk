@@ -1,7 +1,9 @@
-# Check if we are on the physical screen (tty1) and not SSH
+# --- GSKiosk Boot & Reliability Sequence ---
+# This block handles the startup of the Google Slides Kiosk. 
+# It provides a 5-second maintenance abort window on tty1 and 
+# ensures the kiosk automatically restarts if it crashes.
 if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  KIOSK_SCRIPT="$HOME/gskiosk.sh"
-  STOP_FLAG="$HOME/.stop_gskiosk"
+  GSKIOSK_DIR="$HOME/google_slides_kiosk"
   export GSKIOSK_MODE="kiosk"
 
   # --- MAINTENANCE MENU (tty1) ---
@@ -26,7 +28,7 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
       1)
         echo "Launching Chromium in normal mode..."
         export GSKIOSK_MODE="normal"
-        touch "$STOP_FLAG"
+        touch "$GSKIOSK_DIR/.stop_gskiosk"
         ;;
       2)
         echo "Exiting to terminal..."
@@ -42,14 +44,15 @@ if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
   # Reliability Loop: Keep the kiosk alive unless maintenance is requested
   while true; do
     # Run Cage (pointing it to your script)
-    cage -s -- "$KIOSK_SCRIPT" > "$HOME/gskiosk_debug.log" 2>&1
+    cage -s -- "$GSKIOSK_DIR/gskiosk.sh" > "$GSKIOSK_DIR/gskiosk_debug.log" 2>&1
 
     # Check for maintenance stop flag
-    if [ -f "$STOP_FLAG" ]; then
-      rm -f "$STOP_FLAG"
+    if [ -f "$GSKIOSK_DIR/.stop_gskiosk" ]; then
+      rm -f "$GSKIOSK_DIR/.stop_gskiosk"
       echo "Maintenance mode detected. Returning to terminal."
       break
     fi
+
 
     echo "Kiosk/Cage exited unexpectedly. Restarting in 2 seconds..."
     sleep 2
