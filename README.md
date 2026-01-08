@@ -26,9 +26,10 @@ A robust, Wayland-based Google Slides Kiosk for Raspberry Pi (and other minimal 
    ```
 
 2. **Configure your presentation**:
-   Edit `gskiosk.sh` and paste your published Google Slides link into the `URL` variable.
+   Edit `gskiosk.sh` and paste your published Google Slides link into the `URL` variable. Then, make the script executable:
    ```bash
    nano gskiosk.sh
+   chmod +x gskiosk.sh
    ```
 
 3. **Set up auto-run**:
