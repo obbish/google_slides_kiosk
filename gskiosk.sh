@@ -2,7 +2,7 @@
 
 # --- CONFIGURATION ---
 # The URL to display in kiosk mode (e.g., your published Google Slides link)
-URL="https://docs.google.com/presentation/d/e/2PACX-1vQKbj7MTaqwAyb6kH45I-FpxTb4A0MLT7ZkYGeHVGCUHPwpoqsa7sVpoMRPEwAZSvx5UihBkPBclK5b/pub?start=true&loop=true&delayms=15000"
+URL="YOUR_URL_HERE"
 
 # How often to refresh the page (in seconds)
 REFRESH_INTERVAL=600
