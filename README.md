@@ -21,7 +21,7 @@ A robust, Wayland-based Google Slides Kiosk for Raspberry Pi (and other minimal 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/google_slides_kiosk.git ~/google_slides_kiosk
+   git clone https://github.com/obbish/google_slides_kiosk.git ~/google_slides_kiosk
    cd ~/google_slides_kiosk
    ```
 
